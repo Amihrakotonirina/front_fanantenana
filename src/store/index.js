@@ -43,10 +43,10 @@ const methods = {
   recupAllMembres() {
     //console.log("recupAllMembres")
     axios
-      .get("http://127.0.0.1:8000/api/membre_fanantenanas",
+      .get("http://127.0.0.1:3000/api/v1/membre_fanantenanas",
         {
           headers: {
-            'Content-Type': 'application/ld+json'
+            'Content-Type': 'application/json'
           }
         }
       )
@@ -68,10 +68,10 @@ const methods = {
 
   getDetailsCurrentMembre(id) {
     axios
-      .get(`http://127.0.0.1:8000/api/membre_fanantenanas/${id}`,
+      .get(`http://127.0.0.1:3000/api/v1/membre_fanantenanas/${id}`,
         {
         headers: {
-          'Content-Type' : 'application/ld+json'
+          'Content-Type' : 'application/json'
         }
         })
       .then(response => {
@@ -91,10 +91,10 @@ const methods = {
 
   recupAllProgrammes() {
     axios
-      .get("http://127.0.0.1:8000/api/reunions",
+      .get("http://127.0.0.1:3000/api/v1/reunions",
     {
       headers: {
-          'Content-Type' : 'application/ld+json'
+          'Content-Type' : 'application/json'
         }
         })
     .then(response => {
@@ -111,10 +111,10 @@ const methods = {
 
 recupAllCategorieReunion() {
     axios
-      .get("http://127.0.0.1:8000/api/categorie_reunions",
+      .get("http://127.0.0.1:3000/api/v1/categorie_reunions",
     {
       headers: {
-          'Content-Type' : 'application/ld+json'
+          'Content-Type' : 'application/json'
         }
         })
     .then(resp => {
@@ -138,10 +138,10 @@ recupAllCategorieReunion() {
   //PRESENCE
   recupAllPresences() {
     axios
-      .get("http://127.0.0.1:8000/api/presences",
+      .get("http://127.0.0.1:3000/api/v1/presences",
     {
       headers: {
-          'Content-Type' : 'application/ld+json'
+          'Content-Type' : 'application/json'
         }
         })
     .then(response => {
@@ -152,10 +152,10 @@ recupAllCategorieReunion() {
 
     getDetailsPresence(id) {
     axios
-      .get(`http://127.0.0.1:8000/api/presences/${id}`,
+      .get(`http://127.0.0.1:8000/api/v1/presences/${id}`,
         {
         headers: {
-          'Content-Type' : 'application/ld+json'
+          'Content-Type' : 'application/json'
         }
         })
       .then(response => {

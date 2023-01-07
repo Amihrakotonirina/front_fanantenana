@@ -1,5 +1,6 @@
 <template>
-    <form v-if="modification" @submit.prevent="submitForm">
+    <!--form v-if="modification" @submit.prevent="submitForm"-->
+    <form @submit.prevent="submitForm">
         <div class="row mb-3">
                 <div class="form-floating col-sm-2">
                     <input v-model="newMembre.matricule" type="text" class="form-control form-control-sm" name="input-matricule" id="matricule" placeholder="Matricule">
@@ -133,7 +134,7 @@ export default {
         function submitForm(){
             axios({
                 method:'post',
-                url:"http://127.0.0.1:8000/api/membre_fanantenanas", 
+                url:"http://127.0.0.1:3000/api/v1/membre_fanantenanas", 
                 data:newMembre.value,
                 config: {
                     headers: {
