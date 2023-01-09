@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, toRefs, ref, inject } from 'vue';
+import { defineComponent, reactive, toRefs, ref, inject, onMounted } from 'vue';
 import { QrStream } from 'vue3-qr-reader';
 import axios from 'axios';
 
@@ -24,6 +24,7 @@ export default defineComponent({
     QrStream
   },
   setup() {
+    const api_url = ref("")
     const store = inject('store')
     const state = reactive({
       data: null
@@ -37,8 +38,8 @@ export default defineComponent({
             "heureEntree": "2022-02-25T16:55:40.383Z",
             "heureSortie": "2022-02-25T16:55:40.383Z",
             "note": "essai présence manuelle",
-            "membre": "/api/membre_fanantenanas/",
-            "reunion": "/api/reunions/2"
+            "membre": "/api/v1/membre_fanantenanas/",
+            "reunion": "/api/v1/reunions/2"
         })
 
     let tempMembre = ref([])
@@ -51,6 +52,10 @@ export default defineComponent({
       sauvegarderDonnees()
     }
 
+    onMounted(() => {  
+      api_url.value = process.env.VUE_APP_API_URL
+    })
+
         function rechercheMatricule(mat){
             tempMembre = store.state.listeMembres.filter((elem)=>{
                 if(elem.matricule == mat) return elem;
@@ -61,11 +66,11 @@ export default defineComponent({
        function sauvegarderDonnees()
         {
             //presence.value.membre.push("/api/membre_fanantenanas/"+ tempMembre[0].id)
-            presence.value.membre = "/api/membre_fanantenanas/" + tempMembre[0].id
+            presence.value.membre = "/api/v1/membre_fanantenanas/" + tempMembre[0].id
             console.log(presence.value)
             axios({
                 method:'post',
-                url:"http://127.0.0.1:8000/api/presences", 
+                url:"http://127.0.0.1:3000/api/v1/presences", 
                 data: presence.value,
                 config: {
                     headers: {
@@ -90,7 +95,8 @@ export default defineComponent({
       matricule,
       tempMembre,
       rechercheMatricule,
-      sauvegarderDonnees
+      sauvegarderDonnees,
+      api_url
     }
   }
 });

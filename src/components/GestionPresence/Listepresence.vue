@@ -5,21 +5,22 @@
 </template>
 
 <script>
-import { inject, computed, ref } from 'vue'
-import { onMounted } from "vue"
+import { inject, computed, ref, onMounted } from 'vue'
 
 export default {
     setup() {
+        const api_url = ref("")
         const store = inject('store')
 
 
         onMounted(() => {
             store.methods.recupAllPresences()
-            
+            api_url.value = process.env.VUE_APP_API_URL            
         })
 
         return{
             store,
+            api_url
         }
     }
 }

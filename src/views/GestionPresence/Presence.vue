@@ -9,15 +9,15 @@
 </template>
 
 <script>
-//import PresenceQR from "@/components/GestionPresence/PresenceQR.vue"
-import ScanQrCode from "../../components/GestionPresence/ScanQrCode.vue"
+import PresenceQR from "@/components/GestionPresence/PresenceQR.vue"
+//import ScanQrCode from "../../components/GestionPresence/ScanQrCode.vue"
 import Listepresence from "../../components/GestionPresence/Listepresence.vue"
 
 export default {
   name: 'Presence',
   components: {
-    //PresenceQR,
-    ScanQrCode,
+    PresenceQR,
+    //ScanQrCode,
     Listepresence
 }
 }

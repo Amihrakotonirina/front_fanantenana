@@ -153,6 +153,10 @@ export default {
             
         }
         
+        onMounted(() => {  
+          api_url.value = process.env.VUE_APP_API_URL
+        })
+        
       /*  onMounted(() => {
             let routerValue = parseInt(router.currentRoute.value.params.id)*1
             newMembre.value = store.state.listeMembres.filter((membre)=>{
@@ -205,6 +209,7 @@ export default {
             modification,
             tempMembre,
             submitForm,
+            api_url
         }
         
     }

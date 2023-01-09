@@ -311,7 +311,7 @@
 </template>
 
 <script>
-import { inject, computed, ref } from "vue";
+import { inject, computed, ref, onMounted } from "vue";
 import router from "../../router";
 import AfficheMembre from "./AfficheMembre.vue";
 import FicheMembreModal from "@/components/GestionMembre/FicheMembreModal.vue";
@@ -322,8 +322,9 @@ export default {
     const idMembre = ref(0);
     //const modalAffiche = ref("modification");
     const cheminImage = ref(
-      "http://localhost:8000/images/fanantenana/profile/"
+      "http://localhost:3000/images/fanantenana/profile/"
     );
+    const api_url = ref("");
     const texteARechercher = ref("");
     const filtrerListeMembre = computed(() => {
       return store.state.listeMembres.filter((membre) => {
@@ -345,12 +346,22 @@ export default {
       idMembre.value = idM;
       store.methods.getDetailsCurrentMembre(idM);
     };
+
+
+
+    onMounted(() => {  
+      api_url.value = process.env.VUE_APP_API_URL
+    })
+
+
+
     return {
       store,
       idMembre,
       cheminImage,
       texteARechercher,
       filtrerListeMembre,
+      api_url,
       //modalAffiche,
       passerIdMembre,
       navigerVersFiche,

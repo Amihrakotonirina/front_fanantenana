@@ -1,6 +1,7 @@
 <template>
     <div>
         Présence qr
+        <input type="text" v-model="tempMatricule" name="tempMatricule">
         <button @click="rechercheMatricule(store.state.matriculeQrCode)">click</button>
         <button @click="sauvegarderDonnees">Presence</button>
 
@@ -10,7 +11,7 @@
 </template>
 
 <script>
-import { inject, ref } from 'vue'
+import { inject, ref, onMounted } from 'vue'
 import axios from 'axios'
 //import scanQrCode from '@/components/GestionPresence/ScanQrCode.vue'
 
@@ -22,14 +23,16 @@ export default {
     setup() {
         const store = inject('store')
         const matricule = ref("")
+        const tempMatricule = ref("")
+        const api_url = ref("")
         const presence = ref({
             "present": true,
             "retard": false,
             "heureEntree": "2022-02-25T16:55:40.383Z",
             "heureSortie": "",
             "note": "essai présence manuelle",
-            "membre": "/api/membre_fanantenanas/",
-            "reunion": "/api/reunions/1"
+            "membre": "/api/v1/membre_fanantenanas/",
+            "reunion": "/api/v1/reunions/1"
         })
          let tempMembre = ref([])
 
@@ -40,6 +43,10 @@ export default {
             console.log(tempMembre)
         }
 
+        onMounted(() => {  
+          api_url.value = process.env.VUE_APP_API_URL
+        })
+
         function sauvegarderDonnees()
         {
             //presence.value.membre.push("/api/membre_fanantenanas/"+ tempMembre[0].id)
@@ -48,7 +55,7 @@ export default {
             console.log(presence.value)
             axios({
                 method:'post',
-                url:"http://127.0.0.1:8000/api/presences", 
+                url:`${api_url}/presences`, 
                 data: presence.value,
                 config: {
                     headers: {
@@ -71,7 +78,8 @@ export default {
             matricule,
             tempMembre,
             rechercheMatricule,
-            sauvegarderDonnees
+            sauvegarderDonnees,
+            api_url
         }
     }
 }
