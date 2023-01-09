@@ -55,7 +55,7 @@
                 <tr>
                     <th scope="row">{{ programme.id }}</th>
                     <td>{{ moment(programme.dateReunion).format("dddd DD MMMM YYYY") }} - de {{ moment(programme.heureDebut).format("hh:mm") }} à {{ moment(programme.heureFin).format("hh:mm") }}</td>
-                    <td>{{ programme.categorie.categorie }}</td>
+                    <td>{ { programme.categorie.categorie }}</td>
                     <td>{{ programme.commentaire }}</td>
                     <td>{{ programme.ouverte ? "Ouverte" : "Terminé" }}</td>
                     <td>{{programme.presences}}</td>
@@ -204,7 +204,7 @@ export default {
             "heureDebut": "",
             "heureFin": "",
             "commentaire": "",
-            "categorie": "/api/categorie_reunions/",
+            "categorie": "/api/v1/categorie_reunions/",
             "ouverte": true
         });
 
@@ -212,7 +212,7 @@ export default {
             currentReunion.value.categorie = currentReunion.value.categorie + "" + lienCategorie.value;
             axios({
                 method: "post",
-                url: "http://127.0.0.1:8000/api/reunions",
+                url: "http://127.0.0.1:3000/api/v1/reunions",
                 data: currentReunion.value,
                 config: {
                     headers: {

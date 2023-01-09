@@ -109,6 +109,7 @@ import router from "@/router";
 export default {
     setup(){
         const store = inject('store')
+        const api_url = ref("")
         const modification = ref(false)
         const tempMembre = ref(null)
         const newMembre = ref({

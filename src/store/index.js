@@ -152,7 +152,7 @@ recupAllCategorieReunion() {
 
     getDetailsPresence(id) {
     axios
-      .get(`http://127.0.0.1:8000/api/v1/presences/${id}`,
+      .get(`http://127.0.0.1:3000/api/v1/presences/${id}`,
         {
         headers: {
           'Content-Type' : 'application/json'
