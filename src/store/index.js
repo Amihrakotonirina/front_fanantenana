@@ -3,7 +3,6 @@
 import { reactive, readonly, ref, computed } from "vue";
 import axios from "axios";
 
-
 const state = reactive({
   /*/essai
   counter:0,
@@ -11,6 +10,7 @@ const state = reactive({
   //fin essai*/
 
   //Sérieux
+  api_url: "",
   matriculeQrCode: "",
   listeMembres: [],
   currentMembre: null,
@@ -43,7 +43,7 @@ const methods = {
   recupAllMembres() {
     //console.log("recupAllMembres")
     axios
-      .get("http://127.0.0.1:3000/api/v1/membre_fanantenanas",
+      .get(`${state.api_url}/membre_fanantenanas`,
         {
           headers: {
             'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ const methods = {
 
   getDetailsCurrentMembre(id) {
     axios
-      .get(`http://127.0.0.1:3000/api/v1/membre_fanantenanas/${id}`,
+      .get(`${state.api_url}/membre_fanantenanas/${id}`,
         {
         headers: {
           'Content-Type' : 'application/json'
@@ -91,7 +91,7 @@ const methods = {
 
   recupAllProgrammes() {
     axios
-      .get("http://127.0.0.1:3000/api/v1/reunions",
+      .get(`${state.api_url}/reunions`,
     {
       headers: {
           'Content-Type' : 'application/json'
@@ -111,7 +111,7 @@ const methods = {
 
 recupAllCategorieReunion() {
     axios
-      .get("http://127.0.0.1:3000/api/v1/categorie_reunions",
+      .get(`${state.api_url}/categorie_reunions`,
     {
       headers: {
           'Content-Type' : 'application/json'
@@ -133,12 +133,17 @@ recupAllCategorieReunion() {
     state.matriculeQrCode = mat
   },
 
+  setApiUrl(){
+    state.api_url = process.env.VUE_APP_API_URL
+    console.log("api_url = ")
+    console.log(state.api_url)
+  },
 
 
   //PRESENCE
   recupAllPresences() {
     axios
-      .get("http://127.0.0.1:3000/api/v1/presences",
+      .get(`${state.api_url}/presences`,
     {
       headers: {
           'Content-Type' : 'application/json'
@@ -152,7 +157,7 @@ recupAllCategorieReunion() {
 
     getDetailsPresence(id) {
     axios
-      .get(`http://127.0.0.1:8000/api/v1/presences/${id}`,
+      .get(`${state.api_url}/presences/${id}`,
         {
         headers: {
           'Content-Type' : 'application/json'
