@@ -24,13 +24,8 @@
     <br>
     </div>
 
-    <div id="printMe">
-      <h1>Print me!</h1>
-    </div>
-    <button @click="print"></button>
-
     <br>
-    <h2>Programme 2022 </h2> 
+    <h2>Programme 2023 </h2> 
     <!--div class="liste" v-for="programme in store.state.listeProgramme" :key="programme.id">
         <div class="element">
             {{ programme.categorie.categorie }} : {{ moment(programme.dateReunion).format("dddd DD MMMM YYYY") }} - de {{ moment(programme.heureDebut).format("hh:mm") }} à {{ moment(programme.heureFin).format("hh:mm") }}
@@ -58,7 +53,7 @@
                     <td>{ { programme.categorie.categorie }}</td>
                     <td>{{ programme.commentaire }}</td>
                     <td>{{ programme.ouverte ? "Ouverte" : "Terminé" }}</td>
-                    <td>{{programme.presences}}</td>
+                    <td>{ {programme.presences}}</td>
                     <td>
                         <button class="btn btn-sm btn-success">Détails</button>
                         <button class="btn btn-sm btn-danger">Supprimer</button>
@@ -188,7 +183,7 @@
 </template>
 
 <script>
-import { inject, ref } from 'vue'
+import { inject, ref ,onMounted} from 'vue'
 import axios from 'axios'
 import moment from "moment"
 import localization from 'moment/locale/fr'
@@ -198,6 +193,7 @@ export default {
     setup() {
         const store = inject("store");
         const lienCategorie = ref("");
+        const api_url = ref("");
         const output = ref(null);
         const currentReunion = ref({
             "dateReunion": "",
@@ -226,9 +222,14 @@ export default {
                 store.methods.recupAllProgrammes();
             })
                 .catch((err) => {
-                console.warn("Une erreur s'est produite lors de l'enregistrement. ", err);
+                console.warn("Une erreur s'est produite lors de l'enregistrement. ", err.message);
             });
         }
+
+        onMounted(() => {  
+          api_url.value = process.env.VUE_APP_API_URL
+      })
+
         return {
             store,
             currentReunion,
@@ -236,7 +237,7 @@ export default {
             moment,
             output,
             submitForm,
-            print
+            api_url
         };
     },
     components: { DetailsPresence }
