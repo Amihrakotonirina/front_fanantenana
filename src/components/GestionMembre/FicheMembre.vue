@@ -135,7 +135,7 @@ export default {
         function submitForm(){
             axios({
                 method:'post',
-                url:"http://127.0.0.1:3000/api/v1/membre_fanantenanas", 
+                url:`${api_url.value}/membre_fanantenanas`, 
                 data:newMembre.value,
                 config: {
                     headers: {

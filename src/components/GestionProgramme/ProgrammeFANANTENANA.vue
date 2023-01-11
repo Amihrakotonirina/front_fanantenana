@@ -212,7 +212,7 @@ export default {
             currentReunion.value.categorie = currentReunion.value.categorie + "" + lienCategorie.value;
             axios({
                 method: "post",
-                url: "http://127.0.0.1:3000/api/v1/reunions",
+                url: `${api_url.value}/reunions`,
                 data: currentReunion.value,
                 config: {
                     headers: {

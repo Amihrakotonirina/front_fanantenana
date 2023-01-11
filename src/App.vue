@@ -115,6 +115,7 @@ export default {
 
     onMounted(() => {
       console.log("mounted");
+      store.methods.setApiUrl();
       store.methods.recupAllMembres();
       store.methods.recupAllCategorieReunion();
       //this.moment = moment;
