@@ -50,10 +50,11 @@
                 <tr>
                     <th scope="row">{{ programme.id }}</th>
                     <td>{{ moment(programme.dateReunion).format("dddd DD MMMM YYYY") }} - de {{ moment(programme.heureDebut).format("hh:mm") }} à {{ moment(programme.heureFin).format("hh:mm") }}</td>
-                    <td>{ { programme.categorie.categorie }}</td>
+                    <td>{{ programme.categorie_reunion.categorie }}</td>
                     <td>{{ programme.commentaire }}</td>
                     <td>{{ programme.ouverte ? "Ouverte" : "Terminé" }}</td>
-                    <td>{ {programme.presences}}</td>
+                    <!--td>{ {programme.presences}}</td-->
+                    <td>{ {programme.presences.size}}</td>
                     <td>
                         <button class="btn btn-sm btn-success">Détails</button>
                         <button class="btn btn-sm btn-danger">Supprimer</button>
