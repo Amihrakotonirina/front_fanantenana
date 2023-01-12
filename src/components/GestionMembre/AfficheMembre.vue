@@ -36,14 +36,13 @@
                     Membre actif :
                 </div>
                 <div class="col-sm-8">
-                    {{store.state.detailsCurrentMembre.membreActif ? "OUI" : "NON"}}
+                    {{store.state.detailsCurrentMembre.membre_actif ? "OUI" : "NON"}}
                 </div>
                 <i class="bi-alarm" style="font-size: 2rem; color: cornflowerblue;"></i>
             <!--/div-->
         <!--/div>         
     </div>
     <div class="row corps"-->
-        <br>
         <div class="col-sm-4 texte-label">
             Sexe :
         </div>
@@ -54,7 +53,7 @@
             Date de naissance :
         </div>
         <div class="col-sm-8">
-            {{moment(store.state.detailsCurrentMembre.dateNaissance).format("DD/MM/YYYY") }}
+            {{moment(store.state.detailsCurrentMembre.date_naissance).format("DD/MM/YYYY") }}
         </div>
         <div class="col-sm-4 texte-label">
             Adresse :
@@ -68,26 +67,25 @@
         <div class="col-sm-8">
             {{store.state.detailsCurrentMembre.telephone}}
         </div>
-        <div v-if="store.state.detailsCurrentMembre.compteFb" class="col-sm-4 texte-label">
+        <div v-if="store.state.detailsCurrentMembre.compte_facebook" class="col-sm-4 texte-label">
             Compte Facebook :
         </div>
-        <div v-if="store.state.detailsCurrentMembre.compteFb" class="col-sm-8">
-            {{store.state.detailsCurrentMembre.compteFb}}
+        <div v-if="store.state.detailsCurrentMembre.compte_facebook" class="col-sm-8">
+            {{store.state.detailsCurrentMembre.compte_facebook}}
         </div>
-        <div v-if="store.state.detailsCurrentMembre.telephoneParent" class="col-sm-4 texte-label">
+        <div v-if="store.state.detailsCurrentMembre.telephone_parent" class="col-sm-4 texte-label">
             Téléphone parent :
         </div>
-        <div v-if="store.state.detailsCurrentMembre.telephoneParent" class="col-sm-8">
-            {{store.state.detailsCurrentMembre.telephoneParent}}
+        <div v-if="store.state.detailsCurrentMembre.telephone_parent" class="col-sm-8">
+            {{store.state.detailsCurrentMembre.telephone_parent}}
         </div>
         <div class="col-sm-4 texte-label">
             Membre depuis :
         </div>
         <div class="col-sm-8">
-            {{store.state.detailsCurrentMembre.anneeAdhesion}}
+            {{store.state.detailsCurrentMembre.annee_adhesion}}
         </div>
-        <br>
-        <br>
+
         <div v-if="store.state.detailsCurrentMembre.profession" class="col-sm-4 texte-label">
             Profession :
         </div>
@@ -100,19 +98,18 @@
         <div v-if="store.state.detailsCurrentMembre.etude" class="col-sm-8">
             {{store.state.detailsCurrentMembre.etude}}
         </div>
-        <br>
-        <br>
+
         <div class="col-sm-4 texte-label">
             Numéro FPVM :
         </div>
         <div class="col-sm-8">
-            {{store.state.detailsCurrentMembre.numeroFPVM}}
+            {{store.state.detailsCurrentMembre.numero_fpvm}}
         </div>
         <div class="col-sm-4 texte-label">
             Statut FPVM :
         </div>
         <div class="col-sm-8">
-            {{store.state.detailsCurrentMembre.statutFPVM}}
+            {{store.state.detailsCurrentMembre.status_fpvm}}
         </div>
 
 
