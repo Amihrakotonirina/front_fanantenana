@@ -3,7 +3,7 @@
         {{presence.membre.nom}} {{presence.membre.prenom}} ({{presence.reunion.categorie.categorie}} -  {{presence.reunion.categorie.categorie}})
     </div-->
     <div>
-        bonjour details présence :
+        bonjour details présence : ito ve
         <br>
         {{ presence }}
     </div>
@@ -20,7 +20,7 @@ export default {
 
 
         onMounted(() => {
-            store.methods.getDetailsPresence(2)
+            store.methods.getDetailsPresence(1)
             presence.value = store.state.detailsPresence
             console.log("presence = ")
             console.log(presence.value)

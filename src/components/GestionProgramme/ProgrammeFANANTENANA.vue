@@ -40,21 +40,20 @@
                     <th scope="col">#</th>
                     <th scope="col">Date - heure</th>
                     <th scope="col">Type</th>
-                    <th scope="col">Commentaire</th>
+                    <!--th scope="col">Commentaire</th>
+                    <th scope="col">Données brutes</th-->
                     <th scope="col">Statut</th>
-                    <th scope="col">Données brutes</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
-            <tbody v-for="programme in store.state.listeProgramme" :key="programme.id">
+            <tbody v-for="(programme, index) in store.state.listeProgramme" :key="programme.id">
                 <tr>
-                    <th scope="row">{{ programme.id }}</th>
+                    <th scope="row">{{ index + 1 }}</th>
                     <td>{{ moment(programme.dateReunion).format("dddd DD MMMM YYYY") }} - de {{ moment(programme.heureDebut).format("hh:mm") }} à {{ moment(programme.heureFin).format("hh:mm") }}</td>
                     <td>{{ programme.categorie_reunion.categorie }}</td>
-                    <td>{{ programme.commentaire }}</td>
+                    <!--td>{{ programme.commentaire }}</td>
+                    <td>{{programme.presences.length}}</td-->
                     <td>{{ programme.ouverte ? "Ouverte" : "Terminé" }}</td>
-                    <!--td>{ {programme.presences}}</td-->
-                    <td>{ {programme.presences.size}}</td>
                     <td>
                         <button class="btn btn-sm btn-success">Détails</button>
                         <button class="btn btn-sm btn-danger">Supprimer</button>
