@@ -1,6 +1,9 @@
 <template>
-    <div v-for="(presence, index) in store.state.listePresence" :key="index">
-        {{index +1 }} - {{presence.membre.nom}} {{presence.membre.prenom}} ({{presence.reunion.categorie.categorie}} -  {{presence.reunion.categorie.categorie}})
+    <div>
+        <h1>Liste des présences</h1>
+        <div v-for="(presence, index) in store.state.listePresence" :key="index">
+            {{index +1 }} - {{presence.membre.nom}} {{presence.membre.prenom}} ({{presence.reunion.categorie.categorie}} -  {{presence.reunion.categorie.categorie}})
+        </div>
     </div>
 </template>
 

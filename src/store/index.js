@@ -169,6 +169,10 @@ recupAllCategorieReunion() {
     .catch(e => console.log(e))
   },
 
+  recupAllPresencesByProgramme(prog){
+
+  },
+
   selectCurrentProgramme(prog) {
     state.currentProgramme = prog;
     console.log(state.currentProgramme)
