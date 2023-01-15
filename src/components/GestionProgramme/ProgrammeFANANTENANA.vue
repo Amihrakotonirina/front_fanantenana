@@ -200,15 +200,15 @@ export default {
             "heureDebut": "",
             "heureFin": "",
             "commentaire": "",
-            "categorie": "/api/v1/categorie_reunions/",
+            //"categorie": "/api/v1/categorie_reunions/",
             "ouverte": true
         });
 
         function submitForm() {
-            currentReunion.value.categorie = currentReunion.value.categorie + "" + lienCategorie.value;
+            //currentReunion.value.categorie = currentReunion.value.categorie + "" + lienCategorie.value;
             axios({
                 method: "post",
-                url: `${api_url.value}/reunions`,
+                url: `${api_url.value}/reunions/new/${lienCategorie.value}`,
                 data: currentReunion.value,
                 config: {
                     headers: {

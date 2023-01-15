@@ -19,7 +19,8 @@ const state = reactive({
   currentProgramme : null,
   listeCategorieProgramme: [],
   listePresence: [],
-  detailsPresence: null
+  detailsPresence: null,
+  todayReunions : []
 })
 
 const methods = {
@@ -103,9 +104,14 @@ const methods = {
     .catch(e => console.log(e))
   },
 
-  selectCurrentProgramme(prog) {
-    state.currentProgramme = prog;
-    console.log(state.currentProgramme)
+  filterProgramme(reunion_id){
+    state.listeProgramme.filter((reunion)=>{
+            if(reunion.matricule == reunion_id)
+            {
+              state.selectCurrentProgramme(reunion);
+              return reunion;
+            }
+          })
   },
 
 
@@ -119,24 +125,23 @@ recupAllCategorieReunion() {
         })
     .then(resp => {
           state.listeCategorieProgramme = resp.data//["hydra:member"]
-          /*console.log("categories = ")
-          console.log(resp.data["hydra:member"])*/
-          //console.log(state.listeCategorieProgramme)
       })
     .catch(e => console.log(e))
   },
   
 
   setMatriculeQrCode(mat) {
-    console.log("matricule = ")
-    console.log(mat)
     state.matriculeQrCode = mat
+  },
+
+  rechercheMatricule(mat){
+      store.state.listeMembres.filter((elem)=>{
+          if(elem.matricule == mat) return elem.matricule;
+      })
   },
 
   setApiUrl(){
     state.api_url = process.env.VUE_APP_API_URL
-    console.log("api_url = ")
-    console.log(state.api_url)
   },
 
 
@@ -175,7 +180,21 @@ recupAllCategorieReunion() {
 
   selectCurrentProgramme(prog) {
     state.currentProgramme = prog;
-    console.log(state.currentProgramme)
+    //console.log(state.currentProgramme)
+  },
+
+  getTodayReunions() {
+    axios
+      .get(`${state.api_url}/today/reunions`,
+        {
+        headers: {
+          'Content-Type' : 'application/json'
+        }
+        })
+      .then(response => {
+        state.todayReunions = response.data
+      })
+    .catch(e => console.log(e))
   }
   
 }

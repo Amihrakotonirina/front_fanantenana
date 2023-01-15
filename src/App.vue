@@ -58,15 +58,38 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/programme">
-              Programme
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/presence">
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Présences
-            </router-link>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <router-link
+                  class="nav-link active"
+                  aria-current="page"
+                  to="/programme"
+                >
+                  Programme
+                </router-link>
+              </li>
+              <li>
+                <router-link
+                  class="nav-link"
+                  aria-current="page"
+                  to="/presence"
+                >
+                 Présences
+                </router-link>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -118,6 +141,7 @@ export default {
       store.methods.setApiUrl();
       store.methods.recupAllMembres();
       store.methods.recupAllCategorieReunion();
+      store.methods.recupAllProgrammes();
       //this.moment = moment;
     });
 
