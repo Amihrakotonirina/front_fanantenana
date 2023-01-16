@@ -55,7 +55,7 @@
                     <td>{{programme.presences.length}}</td-->
                     <td>{{ programme.ouverte ? "Ouverte" : "Terminé" }}</td>
                     <td>
-                        <button class="btn btn-sm btn-success">Détails</button>
+                        <button class="btn btn-sm btn-success" @click="endProgram(programme.id)">Clôturer le programme</button>
                         <button class="btn btn-sm btn-danger">Supprimer</button>
                             <!-- Button trigger modal -->
                         <button
@@ -223,6 +223,30 @@ export default {
             })
                 .catch((err) => {
                 console.warn("Une erreur s'est produite lors de l'enregistrement. ", err.message);
+            });
+        }
+
+        function endProgram(id_reunion){
+          //tokony parcouriavana ny membres dia ze tsy ao anaty presence am le reunion dia atao absents
+          currentReunion.value.ouverte = false
+          axios({
+                method:'patch',
+                //url: `${api_url.value}/reunion/:id/end`, 
+                url: `${api_url.value}/reunions/${id_reunion}`, 
+                data: currentReunion.value,
+                config: {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
+                }
+            })
+            .then(() => {
+                console.log("Programme marqué terminé et vérouillé.");
+                store.methods.recupAllMembres()
+            })
+            .catch((err) => {
+                console.warn('Une erreur s\'est produite lors de l\'enregistrement. ', err.message);
             });
         }
 
